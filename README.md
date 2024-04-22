@@ -46,6 +46,24 @@ docker run -d --name my-ubuntu-ssh ubuntu-ssh
 
 echo "Container is set up and running. You can SSH using: ssh ctfuser@<host-ip>"
 ```
+This script should be saved as a .sh file in a suitable directory, such as:
+```bash
+/usr/local/bin/
+```
+And be executable:
+```bash
+sudo chmod +x /usr/local/bin/launch_container_script.sh
+```
+
+Then the script should be called when a SSH connection is made. For this, modify the SSH configuration:
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+by adding at the end of the file:
+```bash
+Match User ctfuser
+    ForceCommand /usr/local/bin/launch_container_script.sh
+```
 
 ## Accessing the Challenge
 Participants can connect to the SSH server running in the Docker container using the following command:
