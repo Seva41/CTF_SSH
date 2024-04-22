@@ -65,13 +65,6 @@ Match User ctfuser
     ForceCommand /usr/local/bin/launch_container_script.sh
 ```
 
-## Accessing the Challenge
-Participants can connect to the SSH server running in the Docker container using the following command:
-```bash
-ssh ctfuser@<host-ip>
-```
-Replace `<host-ip>` with the IP address of the host machine. Use the credentials provided separately for `ctfuser`.
-
 ## Objective
 The main objective of this challenge is to capture the flag hidden within the environment. This may involve breaking through several layers of security, executing code, exploiting vulnerabilities, and configuring or bypassing firewall settings.
 
