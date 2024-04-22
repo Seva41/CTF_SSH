@@ -11,7 +11,7 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 
 # Create a non-root user with the username 'ctfuser' and create a group 'ctfuser'
 RUN groupadd ctfuser && useradd -m -s /bin/bash -g ctfuser -G sudo ctfuser
-RUN echo 'ctfuser:secure123#' | chpasswd
+RUN echo 'ctfuser:YOUR_SECURE_PASSWORD' | chpasswd
 
 # SSH login fix to prevent disconnection after login
 RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
@@ -20,7 +20,7 @@ RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid
 RUN mkdir -p /home/ctfuser/Desktop /home/ctfuser/Documents /home/ctfuser/Downloads
 
 # Create a TXT file on the Desktop named 'flag.txt'
-RUN echo 'segti{r3m0t3_c0nn3ct10n}' > /home/ctfuser/Desktop/flag.txt
+RUN echo 'FLAG' > /home/ctfuser/Desktop/flag.txt
 
 # Change owner of the home directory to 'ctfuser'
 RUN chown -R ctfuser:ctfuser /home/ctfuser
