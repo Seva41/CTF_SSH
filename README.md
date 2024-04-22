@@ -73,7 +73,7 @@ Match User ctfuser
 ```
 
 ## Objective
-The main objective of this challenge is to capture the flag hidden within the environment. This may involve breaking through several layers of security, executing code, exploiting vulnerabilities, and configuring or bypassing firewall settings.
+The main objective of this challenge is to capture the flag hidden within the environment. This may involve breaking through some layers of security, executing code, inspecting network capture files, and configuring or bypassing firewall settings.
 
 ## Rules
 - Do not attack the Docker host or other infrastructure.
