@@ -13,6 +13,19 @@ The file must be opened using a sniffer program such as Wireshark.
 Between the TCP packets, there will be 3 different, larger ones with some fictional credentials on their data. 2 of them are distractors, and the remaining one is the correct to use in a SSH connection to the machine running the Docker container.
 The data can be recovered by identifying this packets, and following their TCP Stream in ASCII.
 
+## Firewall
+The machines are setted to block the SSH connections to the Docker machine using `iptables-persistent`. They can visualize the rule using:
+```bash
+iptables -L
+```
+This also will show the correct IPv4 the users should use in order to connect via SSH.
+
+The user must remove the rule using:
+```bash
+iptables -D OUTPUT -p tcp --dport 22 -d <ip_address> -j REJECT
+```
+Replacing `<ip_address>` with the right IPv4 address of the machine.
+
 ## SSH Connection
 Participants can connect to the SSH server running in the Docker container using the following command:
 ```bash
