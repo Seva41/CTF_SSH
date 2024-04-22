@@ -11,7 +11,14 @@ This Capture The Flag (CTF) challenge is designed for the IT Security course at 
   sudo usermod -aG docker $USER
   ```
   Log out and back in for this change to take effect.
-
+- The machines used by the participants should have a rule of `iptables-persistent` blocking the IP of the Docker machine. This would prevent the connection using SSH, as well as being a hint to them to guess the IP they need to connect to:
+  ```bash
+  sudo apt install iptables-persistent
+  iptables -A OUTPUT -p tcp --dport 22 -d <ip_address> -j REJECT
+  iptables-save > /etc/iptables/rules.v4
+  ```
+  Be sure to replace `<ip_address>` with the right IPv4 of the Docker machine.
+  
 ### Running the Challenge
 1. **Clone the Repository**:
    Clone the repository to get the Dockerfile and any other necessary files.
