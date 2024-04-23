@@ -1,7 +1,7 @@
 # Solution
 
 ## Program execution
-To be able to solve the challenge, the players must execute the 'captura' program:
+To be able to solve the challenge, the players must execute the `captura` program:
 ```bash
 sudo chmod +x captura
 ./captura
@@ -22,9 +22,13 @@ This also will show the correct IPv4 the users should use in order to connect vi
 
 The user must remove the rule using:
 ```bash
-iptables -D OUTPUT -p tcp --dport 22 -d <ip_address> -j REJECT
+sudo iptables -D OUTPUT -p tcp --dport 22 -d <ip_address> -j REJECT
 ```
-Replacing `<ip_address>` with the right IPv4 address of the machine.
+Replacing `<ip_address>` with the right IPv4 address of the machine, or:
+```bash
+sudo iptables -F
+```
+to remove all the rules added.
 
 ## SSH Connection
 Participants can connect to the SSH server running in the Docker container using the following command:
