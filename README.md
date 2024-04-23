@@ -1,9 +1,11 @@
-# CTF_SSH
+# CTF - Blocked SSH Connection
 
 ## Description
 This Capture The Flag (CTF) challenge is designed for the IT Security course at Adolfo Ibáñez University for the first semester of 2024. It involves a mix of SSH access, network sniffing, code execution, and firewall manipulation techniques. Participants will need to leverage their skills in these areas to solve the challenge and capture the flag.
 
 ## Setup
+This setup was made focused on an installation using [Kali Linux](https://www.kali.org). Some steps may vary for each other distribution or operating system.
+
 ### Prerequisites
 - A machine with Docker installed. For installation instructions, refer to [Docker's official documentation](https://docs.docker.com/get-docker/).
 - Ensure that Docker is configured to allow non-root users to execute Docker commands. This can be achieved by adding the user to the `docker` group:
@@ -14,11 +16,21 @@ This Capture The Flag (CTF) challenge is designed for the IT Security course at 
 - The machines used by the participants should have a rule of `iptables-persistent` blocking the IP of the Docker machine. This would prevent the connection using SSH, as well as being a hint to them to guess the IP they need to connect to:
   ```bash
   sudo apt install iptables-persistent
+  sudo systemctl enable iptables-persistent.service
   iptables -A OUTPUT -p tcp --dport 22 -d <ip_address> -j REJECT
+  sudo systemctl start iptables-persistent.service
   iptables-save > /etc/iptables/rules.v4
   ```
   Be sure to replace `<ip_address>` with the right IPv4 of the Docker machine.
   
+### Host Machine User Setup
+To handle Docker and other required operations, you need to create a new user called `ctfuser` on the host machine:
+```bash
+sudo adduser ctfuser
+sudo usermod -aG docker ctfuser
+```
+This setup allows `ctfuser` to manage Docker containers and perform necessary operations for the CTF challenge.
+
 ### Running the Challenge
 1. **Clone the Repository**:
    Clone the repository to get the Dockerfile and any other necessary files.
@@ -32,27 +44,11 @@ This Capture The Flag (CTF) challenge is designed for the IT Security course at 
    ```bash
    docker build -t ubuntu-ssh .
    ```
+   It is not needed to run the container, as a new one would be creates automatically with each SSH connection made.
 
-3. **Start the Docker Container**:
-   Run the container:
-   ```bash
-   docker run -d --name my-ubuntu-ssh ubuntu-ssh
-   ```
-   This command starts the Docker container in detached mode and names the container for easy reference.
+### Shell Script
+Participants can utilize the shell script `launch_container_script.sh` to automate the setup process with each SSH connection made to the host. The script will build and run the Docker container and handle any necessary preliminary setup.
 
-## Shell Script for Setup
-Participants can utilize a shell script to automate the setup process. The script will build and run the Docker container and handle any necessary preliminary setup.
-```bash
-#!/bin/bash
-
-# Build the Docker image
-docker build -t ubuntu-ssh .
-
-# Run the Docker container
-docker run -d --name my-ubuntu-ssh ubuntu-ssh
-
-echo "Container is set up and running. You can SSH using: ssh ctfuser@<host-ip>"
-```
 This script should be saved as a .sh file in a suitable directory, such as:
 ```bash
 /usr/local/bin/
