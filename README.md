@@ -79,6 +79,7 @@ The participants should receive the `captura` executable to begin the challenge.
 
 ## Tips
 - The `captura` executable is compiled from the `captura.py` file using [PyInstaller](https://pyinstaller.org/en/stable/).
+- The solution for the challenge is avaliable in `SOLUTION.md`.
 
 ## Support
 For any issues, questions, or needed clarifications regarding the challenge, please contact me.
