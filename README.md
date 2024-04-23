@@ -40,7 +40,7 @@ This setup allows `ctfuser` to manage Docker containers and perform necessary op
    ```
 
 2. **Build the Docker Image**:
-   Build the Docker image using the Dockerfile in the cloned repository.
+   Build the Docker image using the Dockerfile in the cloned repository. Be sure to replace `YOUR_SECURE_PASSWORD` with an appropiate password for the `root` and `ctfuser` users.
    ```bash
    docker build -t ubuntu-ssh .
    ```
