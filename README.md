@@ -44,7 +44,7 @@ This setup allows `ctfuser` to manage Docker containers and perform necessary op
    ```bash
    docker build -t ubuntu-ssh .
    ```
-   It is not needed to run the container, as a new one would be creates automatically with each SSH connection made.
+   It is not needed to run the container, as a new one would be creates automatically with each SSH connection made. Be sure to build the image using the `ctfuser` user.
 
 ### Shell Script
 Participants can utilize the shell script `launch_container_script.sh` to automate the setup process with each SSH connection made to the host. The script will build and run the Docker container and handle any necessary preliminary setup.
@@ -70,11 +70,15 @@ Match User ctfuser
 
 ## Objective
 The main objective of this challenge is to capture the flag hidden within the environment. This may involve breaking through some layers of security, executing code, inspecting network capture files, and configuring or bypassing firewall settings.
+The participants should receive the `captura` executable to begin the challenge.
 
 ## Rules
 - Do not attack the Docker host or other infrastructure.
 - Focus your efforts only on the intended challenge Docker container.
 - Sharing solutions with other participants is strictly prohibited.
+
+## Tips
+- The `captura` executable is compiled from the `captura.py` file using [PyInstaller](https://pyinstaller.org/en/stable/).
 
 ## Support
 For any issues, questions, or needed clarifications regarding the challenge, please contact me.
