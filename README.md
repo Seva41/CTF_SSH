@@ -17,12 +17,15 @@ This setup was made focused on an installation using [Kali Linux](https://www.ka
   ```bash
   sudo apt install iptables-persistent
   sudo systemctl enable iptables-persistent.service
-  iptables -A OUTPUT -p tcp --dport 22 -d <ip_address> -j REJECT
+  sudo iptables -A OUTPUT -p tcp --dport 22 -d <ip_address> -j REJECT
   sudo systemctl start iptables-persistent.service
-  iptables-save > /etc/iptables/rules.v4
   ```
   Be sure to replace `<ip_address>` with the right IPv4 of the Docker machine.
-  
+  You will need to save the rule as root (sudo will not work):
+  ```bash
+  sudo su
+  iptables-save > /etc/iptables/rules.v4
+  ```
 ### Host Machine User Setup
 To handle Docker and other required operations, you need to create a new user called `ctfuser` on the host machine:
 ```bash
