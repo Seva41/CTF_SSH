@@ -1,12 +1,12 @@
 # Solution
 
 ## Program execution
-To be able to solve the challenge, the players must execute the [captura](Setup/captura) program:
+To be able to solve the challenge, the players must execute the [captura](../Setup/captura) program:
 ```bash
 sudo chmod +x captura
 ./captura
 ```
-This will create a randomized `.pcap` file with a mix of different packets, such as DNS, TCP, ICMP, etc.
+This will create a randomized [.pcap](conexion.pcap) file with a mix of different packets, such as DNS, TCP, ICMP, etc.
 
 ## Sniffer
 The file must be opened using a sniffer program such as Wireshark.
@@ -35,7 +35,7 @@ Participants can connect to the SSH server running in the Docker container using
 ```bash
 ssh ctfuser@<host-ip>
 ```
-Replace `<host-ip>` with the IP address of the host machine. Use the credentials provided separately for `ctfuser`, recovered in the `.pcap` file.
+Replace `<host-ip>` with the IP address of the host machine. Use the credentials provided separately for `ctfuser`, recovered in the [.pcap](conexion.pcap) file.
 
 ## Linux commands
 With access to the container machine, the participants should be able to use `ls` to see the contents of the root directory, containing 3 folders. One of them, `Desktop`, contains the flag inside a file named `flag.txt`.
