@@ -1,7 +1,7 @@
 # Solution
 
 ## Program execution
-To be able to solve the challenge, the players must execute the `captura` program:
+To be able to solve the challenge, the players must execute the [captura](Setup/captura) program:
 ```bash
 sudo chmod +x captura
 ./captura
